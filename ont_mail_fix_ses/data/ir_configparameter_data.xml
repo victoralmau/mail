@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <record id="mail_mail_headers_override_add" model="ir.config_parameter">
+            <field name="key">mail_mail_headers_override_add</field>
+            <field name="value">X-SES-CONFIGURATION-SET: Engagement</field>
+        </record>                            
+    </data>
+</openerp>

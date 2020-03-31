@@ -1,2 +1,3 @@
 Añade el campo de duration en mail.message y modifica el body para que SI permita HTML
-Adicionalmente ANTES de envíar un mensaje a través de mail.compose.message comprueba si el tamaño de los adjuntos es >=10MB (debido a SES no se permite)
+
+Al cambiar la plantilla O añadir un adjunto al mismo se comprueba el tamaño del mensaje, y si se comprueba que la suma de los adjuntos es > 10MB muestra el siguiente aviso: El limite maximo de los adjuntos de un email es de 10MB

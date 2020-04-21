@@ -34,8 +34,8 @@ class MailMessage(models.Model):
                                 starred_any_user = True
                                 record.generate_auto_starred_slack(user_id)#Fix slack
                                 
-                        if starred_item==True:                                                                                
-                            self.env.cr.execute("""INSERT INTO "mail_message_res_partner_starred_rel" ("mail_message_id", "res_partner_id") VALUES ('"""+str(record.id)+"""', '"""+str(partner_id.id)+"""')""")
+                        if starred_item==True:
+                            record.starred_partner_ids = [(4, partner_id.id)]
             else:
                 if record.message_type=='email':
                     mail_followers_ids = self.env['mail.followers'].search([('res_model', '=', record.model),('res_id', '=', record.res_id)])                         
@@ -43,7 +43,7 @@ class MailMessage(models.Model):
                         for user_id in mail_follower.partner_id.user_ids:
                             if user_id.id>0:
                                 starred_any_user = True
-                                self.env.cr.execute("""INSERT INTO "mail_message_res_partner_starred_rel" ("mail_message_id", "res_partner_id") VALUES ('"""+str(record.id)+"""', '"""+str(mail_follower.partner_id.id)+"""')""")                                
+                                record.starred_partner_ids = [(4, mail_follower.partner_id.id)]                                
                                 record.generate_auto_starred_slack(user_id)#Fix slack                        
                             
             if starred_any_user==False:

@@ -1,2 +1,2 @@
-import mail_mail
-import mail_thread
+from . import mail_mail
+from . import mail_thread

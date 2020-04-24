@@ -1,2 +1,2 @@
-import mail_compose_message
-import mail_message
+from . import mail_compose_message
+from . import mail_message

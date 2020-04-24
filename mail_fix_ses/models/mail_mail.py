@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
-from openerp import api, models, fields
-from openerp.addons.base.ir.ir_mail_server import extract_rfc2822_addresses
+from odoo import api, models, fields
 
 import logging
-
 _logger = logging.getLogger(__name__)
 
 class MailMail(models.Model):
     _inherit = 'mail.mail'                                
    
-    @api.multi    
-    def cron_action_check_mails_exceptions(self, cr=None, uid=False, context=None): 
+    @api.model    
+    def cron_action_check_mails_exceptions(self): 
     
-        mail_catchall = self.env['ir.config_parameter'].get_param('mail.catchall.alias')+"@"+self.env['ir.config_parameter'].get_param('mail.catchall.domain')        
+        mail_catchall = str(self.env['ir.config_parameter'].get_param('mail.catchall.alias'))+"@"+str(self.env['ir.config_parameter'].get_param('mail.catchall.domain'))        
     
         mail_mail_ids = self.env['mail.mail'].search([('state', '=', 'exception')])
         

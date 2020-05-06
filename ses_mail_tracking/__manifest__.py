@@ -14,7 +14,7 @@
         'security/ir.model.access.csv',
     ],
     'external_dependencies': {
-        'python' : ['boto3'],
+        'python3' : ['boto3'],
     },
     'installable': True,
     'auto_install': False,    

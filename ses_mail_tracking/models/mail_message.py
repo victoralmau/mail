@@ -102,7 +102,7 @@ class MailMessage(models.Model):
     @api.one
     def aws_action_mail_complaint(self, message_body):
         ses_mail_tracking_vals = {
-            'mail_message_id': mail_message_id.id,
+            'mail_message_id': self.id,
             'message_id': message_body['mail']['messageId'],
             'date': message_body['complaint']['timestamp'],
             'response': '',

@@ -88,20 +88,21 @@ class SesMailTracking(models.Model):
                         notification_type_lower = str(message_body['notificationType'].lower())
                         #message_id_odoo
                         message_id_odoo = False            
-                        if len(message_body['mail']['headers'])>0:
-                            for header in message_body['mail']['headers']:                
-                                if header['name']=='Message-Id':
-                                    message_id_odoo = header['value'].strip()
-                                    mail_message_ids = self.env['mail.message'].sudo().search([('message_id', '=', message_id_odoo)])
-                                    if len(mail_message_ids)>0:
-                                        for mail_message_id in mail_message_ids:
-                                            #notification_type_lower
-                                            if notification_type_lower=='delivery':
-                                                mail_message_id.aws_action_mail_delivery(message_body)
-                                            elif notification_type_lower=='bounce':
-                                                mail_message_id.aws_action_mail_bounce(message_body)
-                                            elif notification_type_lower=='complaint':
-                                                mail_message_id.aws_action_mail_complaint(message_body)
+                        if 'headers' in message_body['mail']:
+                            if len(message_body['mail']['headers'])>0:
+                                for header in message_body['mail']['headers']:                
+                                    if header['name']=='Message-Id':
+                                        message_id_odoo = header['value'].strip()
+                                        mail_message_ids = self.env['mail.message'].sudo().search([('message_id', '=', message_id_odoo)])
+                                        if len(mail_message_ids)>0:
+                                            for mail_message_id in mail_message_ids:
+                                                #notification_type_lower
+                                                if notification_type_lower=='delivery':
+                                                    mail_message_id.aws_action_mail_delivery(message_body)
+                                                elif notification_type_lower=='bounce':
+                                                    mail_message_id.aws_action_mail_bounce(message_body)
+                                                elif notification_type_lower=='complaint':
+                                                    mail_message_id.aws_action_mail_complaint(message_body)
                     #remove_message                
                     sqs.delete_message(
                         QueueUrl=ses_sqs_url,

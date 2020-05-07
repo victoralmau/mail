@@ -7,6 +7,7 @@ Addons
 ----------------
 nombre | version
 --- | ---
+[mail_arelux](mail_arelux/) | 12.0.1.0.0
 [mail_auto_starred](mail_auto_starred/) | 12.0.1.0.0
 [mail_fix_ses](mail_fix_ses/) | 12.0.1.0.0
 [ont_base_mail](ont_base_mail/) | 12.0.1.0.0

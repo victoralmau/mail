@@ -15,7 +15,7 @@ class MailMessage(models.Model):
     @api.model
     def _create(self, values):
         return_id = super(MailMessage, self)._create(values)
-        mail_message_ids = self.env['mail.message'].sudo().search([('id', '=', return_id)])
+        mail_message_ids = self.env['mail.message'].sudo().search([('id', '=', return_id.id)])
         if len(mail_message_ids) > 0:
             mail_message_id = mail_message_ids[0]
             if mail_message_id.id>0:

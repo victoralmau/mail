@@ -1,4 +1,5 @@
-Implementa el addon crm_activity_objective con peculiaridades de Arelux
+Viene anteriormente de crm_activity_objective_arelux (V10)
+Implementa el addon mail_activity_objective con peculiaridades de Arelux
 
 Los crones previamente existentes:
 - Odoo Crm Lead Change Empty next_activity_objective_id

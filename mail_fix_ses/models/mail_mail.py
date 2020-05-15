@@ -40,10 +40,11 @@ class MailMail(models.Model):
                 mail_mail_id.mark_outgoing()
                 mail_mail_id.send()           
                 
-    def send(self, auto_commit=False, raise_exception=False):
-        for email in self.env['mail.mail'].browse(self.ids):        
-            self.write({
-                'reply_to': email.email_from                        
-            })                                                
-                                                                
-        return super(MailMail, self).send(auto_commit=auto_commit, raise_exception=raise_exception)                                                                                               
+    @api.model
+    def create(self, values):
+        return_object = super(MailMail, self).create(values)
+        #override reply_to
+        if return_object.email_from!=False:
+            return_object.reply_to = return_object.email_from 
+        #return            
+        return return_object                                                                                                           

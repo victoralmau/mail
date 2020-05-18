@@ -1,0 +1,1 @@
+A nivel de crm.lead se implementan campos de solo lectura de tal forma que cuando se crea, edita o eliminan actividades para los leads, se actualizan esos campos respecto a la actividad SIN completar mas vieja con el objetivo de poder filtrar esos datos y mostrarlos en listados, etc.

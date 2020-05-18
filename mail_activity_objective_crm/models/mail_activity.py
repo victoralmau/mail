@@ -6,7 +6,7 @@ _logger = logging.getLogger(__name__)
 
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
-    
+
     @api.model
     def create(self, values):
         return_object = super(MailActivity, self).create(values)

@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 from . import mail_activity
-from . import mail_activity_objective
+from . import crm_lead

@@ -12,6 +12,10 @@ class MailActivityObjective(models.Model):
     name = fields.Char(
         string='Nombre',
     )
+    res_model_id = fields.Many2one(
+        comodel_name='ir.model',
+        string='Modelo'
+    )
     objective_type = fields.Selection(
         selection=[
             ('reserved','Reservado'), 
@@ -23,7 +27,7 @@ class MailActivityObjective(models.Model):
             ('wake','Despertar')
         ],
         string='Tipo'
-    )    
+    )
     probability = fields.Integer(
         string='Probabilidad', 
         default=0

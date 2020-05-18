@@ -7,8 +7,8 @@
         <field name="priority" eval="20"/>                
         <field name="arch" type="xml">
             <field name="summary" position="after">
-                <field name="mail_activity_objective_id" options="{'no_create': True, 'no_open': True}" />
-                <field name="duration" widget="float_time" />
+                <field name="activity_objective_id" options="{'no_create': True, 'no_open': True}" required="True" />
+                <field name="duration" widget="float_time" required="True" />
             </field>                                                            
         </field>
     </record>               

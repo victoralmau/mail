@@ -11,6 +11,7 @@
                 </div>
                 <group>                                    
                     <group>
+                        <field name="res_model_id"/>
                         <field name="objective_type"/>
                         <field name="probability"/>
                     </group>
@@ -24,7 +25,8 @@
         <field name="arch" type="xml">
             <tree string="Objetivos de actividades">
                 <field name="name"/>
-                <field name="probability"/>
+                <field name="res_model_id"/>
+                <field name="objective_type"/>
             </tree>
         </field>            
     </record>

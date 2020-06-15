@@ -7,6 +7,7 @@ from odoo import api, models, fields
 class MailFollowers(models.Model):
     _inherit = 'mail.followers'
 
+    '''
     @api.model
     def create(self, values):
         need_return = True                                               
@@ -37,3 +38,4 @@ class MailFollowers(models.Model):
         #need_return
         if need_return==True:                                
             return return_val
+    '''

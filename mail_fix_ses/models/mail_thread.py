@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields
 from odoo.tools.safe_eval import safe_eval
 

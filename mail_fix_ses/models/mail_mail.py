@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from openerp import api, models, fields
 from openerp.addons.base.ir.ir_mail_server import extract_rfc2822_addresses
 

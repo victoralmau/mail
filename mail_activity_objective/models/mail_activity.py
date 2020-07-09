@@ -10,10 +10,10 @@ class MailActivity(models.Model):
     
     activity_objective_id = fields.Many2one(
         comodel_name='mail.activity.objective',
-        string='Objetivo de actividad'
+        string='Activity objective'
     )    
     duration = fields.Float(
-        string='Duracion'
+        string='Duration'
     )
 
     @api.one

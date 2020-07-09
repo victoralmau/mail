@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="mail_activity_objective_tree_form" model="ir.ui.view">
-        <field name="name">Objetivo de actividad</field>
+        <field name="name">Activity objective</field>
         <field name="model">mail.activity.objective</field>
         <field name="arch" type="xml">
-            <form string="Objetivo de actividad">
+            <form string="Activity objective">
                 <div class="oe_title">
                     <label for="name" class="oe_edit_only"/>
                     <h1><field name="name"/></h1>
@@ -20,10 +20,10 @@
         </field>
     </record>
     <record id="mail_activity_objective_tree" model="ir.ui.view">
-        <field name="name">Objetivos de actividades</field>
+        <field name="name">Activity objectives</field>
         <field name="model">mail.activity.objective</field>            
         <field name="arch" type="xml">
-            <tree string="Objetivos de actividades">
+            <tree string="Activity objectives">
                 <field name="name"/>
                 <field name="res_model_id"/>
                 <field name="objective_type"/>
@@ -31,7 +31,7 @@
         </field>            
     </record>
     <record model="ir.actions.act_window" id="mail_activity_objective_action">
-        <field name="name">Objetivos de actividades</field>
+        <field name="name">Activity objectives</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">mail.activity.objective</field>
         <field name="view_type">form</field>
@@ -40,7 +40,7 @@
     </record>             
     <menuitem 
         action="mail_activity_objective_action" 
-        name="Objetivos de actividades"
+        name="Activity objectives"
         id="mail_activity_objective_action_item" 
         parent="base.menu_email"
         sequence="30"

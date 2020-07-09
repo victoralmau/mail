@@ -11,11 +11,11 @@ class MailActivityObjective(models.Model):
     _order = "probability desc"
     
     name = fields.Char(
-        string='Nombre',
+        string='Name',
     )
     res_model_id = fields.Many2one(
         comodel_name='ir.model',
-        string='Modelo'
+        string='Model'
     )
     objective_type = fields.Selection(
         selection=[
@@ -27,9 +27,9 @@ class MailActivityObjective(models.Model):
             ('tracking','Seguimiento'), 
             ('wake','Despertar')
         ],
-        string='Tipo'
+        string='Type'
     )
     probability = fields.Integer(
-        string='Probabilidad', 
+        string='Probability',
         default=0
     )

@@ -44,7 +44,7 @@ class MailMessage(models.Model):
                             if user_id.id>0:
                                 starred_any_user = True
                                 record.starred_partner_ids = [(4, mail_follower.partner_id.id)]                                
-                                record.generate_auto_starred_slack(user_id)#Fix slack                        
+                                record.generate_auto_starred_slack(user_id)#Fix slack
                             
             if starred_any_user==False:
                 notice_message_skip = False
@@ -53,6 +53,6 @@ class MailMessage(models.Model):
                         notice_message_skip = True                   
                 
                 if notice_message_skip==False:
-                    record.generate_notice_message_without_auto_starred_user_slack()#Fix slack notice                            
+                    record.generate_notice_message_without_auto_starred_user_slack()#Fix slack notice
                                                                                                                         
         return record                                             

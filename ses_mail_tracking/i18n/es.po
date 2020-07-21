@@ -1,0 +1,181 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* ses_mail_tracking
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0-20200601\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-21 12:47+0000\n"
+"PO-Revision-Date: 2020-07-21 12:47+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: ses_mail_tracking
+#: selection:mail.tracking.email,ses_state:0
+#: selection:ses.mail.tracking,state:0
+msgid "Bounce"
+msgstr "Rebote"
+
+#. module: ses_mail_tracking
+#: selection:mail.tracking.email,ses_state:0
+#: selection:ses.mail.tracking,state:0
+msgid "Complaint"
+msgstr "Reclamación"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__create_uid
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__create_date
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__create_date
+msgid "Created on"
+msgstr "Creado el"
+
+#. module: ses_mail_tracking
+#: model:ir.actions.server,name:ses_mail_tracking.cron_check_ses_mail_tracking_ir_actions_server
+#: model:ir.cron,cron_name:ses_mail_tracking.cron_check_ses_mail_tracking
+#: model:ir.cron,name:ses_mail_tracking.cron_check_ses_mail_tracking
+msgid "Cron Check Ses Mail Tracking"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: ses_mail_tracking
+#: selection:mail.tracking.email,ses_state:0
+#: selection:ses.mail.tracking,state:0
+msgid "Delivery"
+msgstr "Entrega"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__display_name
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__display_name
+msgid "Display Name"
+msgstr "Nombre mostrado"
+
+#. module: ses_mail_tracking
+#: model_terms:ir.ui.view,arch_db:ses_mail_tracking.view_ses_mail_tracking_search
+msgid "Group by"
+msgstr "Agrupar por"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__id
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__id
+msgid "ID"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking____last_update
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient____last_update
+msgid "Last Modified on"
+msgstr "Última modificación en"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__write_uid
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__write_date
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__write_date
+msgid "Last Updated on"
+msgstr "Última actualización el"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__mail_message_id
+msgid "Mail Message Id"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.model,name:ses_mail_tracking.model_mail_tracking_email
+msgid "MailTracking email"
+msgstr "MailTracking correo"
+
+#. module: ses_mail_tracking
+#: model:ir.model,name:ses_mail_tracking.model_mail_message
+msgid "Message"
+msgstr "Mensaje"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__message_id
+msgid "Message Id"
+msgstr "Id mensaje"
+
+#. module: ses_mail_tracking
+#: selection:mail.tracking.email,ses_state:0
+#: selection:ses.mail.tracking,state:0
+msgid "None"
+msgstr "Ninguno"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__recipient
+msgid "Recipient"
+msgstr "Destinatario"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__recipient_ids
+msgid "Recipients"
+msgstr "Destinatarios"
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__response
+msgid "Response"
+msgstr "Respuesta"
+
+#. module: ses_mail_tracking
+#: model:ir.ui.menu,name:ses_mail_tracking.menu_odoo_ses_mail_tracking
+msgid "SES"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.actions.act_window,name:ses_mail_tracking.ses_mail_tracking_action
+#: model:ir.model,name:ses_mail_tracking.model_ses_mail_tracking
+#: model:ir.ui.menu,name:ses_mail_tracking.menuitem_odoo_ses_mail_tracking
+#: model_terms:ir.ui.view,arch_db:ses_mail_tracking.ses_mail_tracking_form_view
+msgid "SES Mail Tracking"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_mail_tracking_email__ses_mail_tracking_id
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking_recipient__ses_mail_tracking_id
+msgid "SES Mail Tracking ID"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.model,name:ses_mail_tracking.model_ses_mail_tracking_recipient
+msgid "SES Mail Tracking Recipient"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_mail_tracking_email__ses_state
+msgid "SES State"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model_terms:ir.ui.view,arch_db:ses_mail_tracking.ses_mail_tracking_tree
+#: model_terms:ir.ui.view,arch_db:ses_mail_tracking.view_ses_mail_tracking_search
+msgid "Ses mail tracking"
+msgstr ""
+
+#. module: ses_mail_tracking
+#: model:ir.model.fields,field_description:ses_mail_tracking.field_ses_mail_tracking__state
+#: model_terms:ir.ui.view,arch_db:ses_mail_tracking.view_ses_mail_tracking_search
+msgid "State"
+msgstr "Provincia"
+
+#. module: ses_mail_tracking
+#: model_terms:ir.ui.view,arch_db:ses_mail_tracking.ses_mail_tracking_form_view
+msgid "child"
+msgstr ""
+

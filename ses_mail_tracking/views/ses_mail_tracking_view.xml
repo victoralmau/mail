@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="ses_mail_tracking_form_view" model="ir.ui.view">
         <field name="name">SES Mail Tracking</field>
         <field name="model">ses.mail.tracking</field>
@@ -20,11 +21,12 @@
             </form>
         </field>
     </record>
+
     <record id="ses_mail_tracking_tree" model="ir.ui.view">
         <field name="name">SES Mail Tracking</field>
         <field name="model">ses.mail.tracking</field>            
         <field name="arch" type="xml">
-            <tree string="SMS Mensajes">
+            <tree string="Ses mail tracking">
                 <field name="mail_message_id"/>
                 <field name="message_id"/>
                 <field name="date"/>
@@ -32,17 +34,19 @@
             </tree>
         </field>            
     </record>
+
     <record id="view_ses_mail_tracking_search" model="ir.ui.view">
         <field name="name">view_ses_mail_tracking_search</field>
         <field name="model">ses.mail.tracking</field>
         <field name="arch" type="xml">
-            <search string="SMS Mensajes">
-                <group expand="0" name="group_by" string="Agrupar por">
-                    <filter name="group_by_state" string="Estado" domain="[]" context="{'group_by' : 'state'}"/>                       
+            <search string="Ses mail tracking">
+                <group expand="0" name="group_by" string="Group by">
+                    <filter name="group_by_state" string="State" domain="[]" context="{'group_by' : 'state'}"/>
                </group>                    
             </search>
         </field>
-    </record>    
+    </record>
+
     <record id="ses_mail_tracking_action" model="ir.actions.act_window">
         <field name="name">SES Mail Tracking</field>
         <field name="type">ir.actions.act_window</field>
@@ -51,7 +55,8 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="ses_mail_tracking_tree"/>
         <field name="search_view_id" ref="view_ses_mail_tracking_search"/>                
-    </record>        
+    </record>
+
     <menuitem 
         id="menu_odoo_ses_mail_tracking" 
         name="SES"

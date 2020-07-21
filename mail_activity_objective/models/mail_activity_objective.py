@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, fields, models
 
-import logging
-_logger = logging.getLogger(__name__)
+from odoo import fields, models
+
 
 class MailActivityObjective(models.Model):
     _name = 'mail.activity.objective'
@@ -19,13 +17,13 @@ class MailActivityObjective(models.Model):
     )
     objective_type = fields.Selection(
         selection=[
-            ('reserved','Reservado'), 
-            ('prospecting','Prospeccion'), 
-            ('activation','Activacion'), 
-            ('review','Repaso'), 
-            ('closing','Cierre'), 
-            ('tracking','Seguimiento'), 
-            ('wake','Despertar')
+            ('reserved','Reserved'),
+            ('prospecting','Prospecting'),
+            ('activation','Activation'),
+            ('review','Review'),
+            ('closing','Closing'),
+            ('tracking','Tracking'),
+            ('wake','Wake')
         ],
         string='Type'
     )

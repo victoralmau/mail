@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models, tools
 
@@ -21,26 +20,25 @@ class SesMailTracking(models.Model):
         string='Message Id'
     )
     date = fields.Date(        
-        string='Fecha'
+        string='Date'
     )
     response = fields.Text(        
-        string='Respuesta'
+        string='Response'
     )
     state = fields.Selection(
         selection=[
-            ('none','Ninguno'), 
-            ('delivery','Entregado'), 
-            ('bounce','Rebote'),
-            ('complaint','Reclamacion')                         
+            ('none','None'),
+            ('delivery','Delivery'),
+            ('bounce','Bounce'),
+            ('complaint','Complaint')
         ],
         default='none',
-        string='SES Estado', 
+        string='State',
     )
     recipient_ids = fields.One2many('ses.mail.tracking.recipient', 'ses_mail_tracking_id', string='Recipients')
     
     def item_exist(self, params):
-        exist = False 
-        
+        exist = False
         ses_mail_tracking_ids = self.env['ses.mail.tracking'].sudo().search(
             [
                 ('mail_message_id', '=', params['mail_message_id']),
@@ -50,7 +48,7 @@ class SesMailTracking(models.Model):
                 ('state', '=', params['state'])
             ]
         )
-        if len(ses_mail_tracking_ids)>0:
+        if ses_mail_tracking_ids:
             exist = True
             
         return exist        
@@ -61,7 +59,7 @@ class SesMailTracking(models.Model):
         AWS_ACCESS_KEY_ID = tools.config.get('aws_access_key_id')        
         AWS_SECRET_ACCESS_KEY = tools.config.get('aws_secret_key_id')
         AWS_SMS_REGION_NAME = tools.config.get('aws_region_name')                        
-        #boto3
+        # boto3
         sqs = boto3.client(
             'sqs',
             region_name=AWS_SMS_REGION_NAME, 
@@ -81,30 +79,34 @@ class SesMailTracking(models.Model):
                 total_messages = len(response['Messages'])
             else:
                 total_messages = 0
-            #continue
+            # continue
             if 'Messages' in response:
                 for message in response['Messages']:                                
                     message_body = json.loads(message['Body'])   
                     if 'mail' in message_body:              
                         notification_type_lower = str(message_body['notificationType'].lower())
-                        #message_id_odoo
+                        # message_id_odoo
                         message_id_odoo = False            
                         if 'headers' in message_body['mail']:
-                            if len(message_body['mail']['headers'])>0:
+                            if len(message_body['mail']['headers']) > 0:
                                 for header in message_body['mail']['headers']:                
                                     if header['name']=='Message-Id':
                                         message_id_odoo = header['value'].strip()
-                                        mail_message_ids = self.env['mail.message'].sudo().search([('message_id', '=', message_id_odoo)])
-                                        if len(mail_message_ids)>0:
+                                        mail_message_ids = self.env['mail.message'].sudo().search(
+                                            [
+                                                ('message_id', '=', message_id_odoo)
+                                            ]
+                                        )
+                                        if mail_message_ids:
                                             for mail_message_id in mail_message_ids:
-                                                #notification_type_lower
-                                                if notification_type_lower=='delivery':
+                                                # notification_type_lower
+                                                if notification_type_lower == 'delivery':
                                                     mail_message_id.aws_action_mail_delivery(message_body)
-                                                elif notification_type_lower=='bounce':
+                                                elif notification_type_lower == 'bounce':
                                                     mail_message_id.aws_action_mail_bounce(message_body)
-                                                elif notification_type_lower=='complaint':
+                                                elif notification_type_lower == 'complaint':
                                                     mail_message_id.aws_action_mail_complaint(message_body)
-                    #remove_message                
+                    # remove_message
                     sqs.delete_message(
                         QueueUrl=ses_sqs_url,
                         ReceiptHandle=message['ReceiptHandle']

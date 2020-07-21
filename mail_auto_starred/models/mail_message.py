@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields
 
@@ -21,38 +20,43 @@ class MailMessage(models.Model):
         # Override the original create function for the res.partner model
         record = super(MailMessage, self).create(values)
         
-        if record._name=="mail.message":
+        if record._name == "mail.message":
             starred_any_user = False
             
-            if len(record.needaction_partner_ids)>0:            
+            if record.needaction_partner_ids:
                 for partner_id in record.needaction_partner_ids:
-                    if partner_id.id!=self.env.user.partner_id.id:
+                    if partner_id.id != self.env.user.partner_id.id:
                         starred_item = False
                         for user_id in partner_id.user_ids:
-                            if user_id.id>0:
+                            if user_id:
                                 starred_item = True
                                 starred_any_user = True
-                                record.generate_auto_starred_slack(user_id)#Fix slack
+                                record.generate_auto_starred_slack(user_id)# Fix slack
                                 
-                        if starred_item==True:
+                        if starred_item:
                             record.starred_partner_ids = [(4, partner_id.id)]
             else:
-                if record.message_type=='email':
-                    mail_followers_ids = self.env['mail.followers'].search([('res_model', '=', record.model),('res_id', '=', record.res_id)])                         
+                if record.message_type == 'email':
+                    mail_followers_ids = self.env['mail.followers'].search(
+                        [
+                            ('res_model', '=', record.model),
+                            ('res_id', '=', record.res_id)
+                        ]
+                    )
                     for mail_follower in mail_followers_ids:
                         for user_id in mail_follower.partner_id.user_ids:
-                            if user_id.id>0:
+                            if user_id:
                                 starred_any_user = True
                                 record.starred_partner_ids = [(4, mail_follower.partner_id.id)]                                
-                                record.generate_auto_starred_slack(user_id)#Fix slack
+                                record.generate_auto_starred_slack(user_id)# Fix slack
                             
-            if starred_any_user==False:
+            if starred_any_user == False:
                 notice_message_skip = False
                 for user_id in record.author_id.user_ids:
-                    if user_id.id>0: 
+                    if user_id:
                         notice_message_skip = True                   
                 
-                if notice_message_skip==False:
-                    record.generate_notice_message_without_auto_starred_user_slack()#Fix slack notice
+                if notice_message_skip == False:
+                    record.generate_notice_message_without_auto_starred_user_slack()# Fix slack notice
                                                                                                                         
         return record                                             

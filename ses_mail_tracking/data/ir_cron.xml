@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo noupdate="1">
+
     <record id="cron_check_ses_mail_tracking" forcecreate="True" model="ir.cron">
         <field name="name">Cron Check Ses Mail Tracking</field>
         <field name="active" eval="False"/>
         <field name="user_id" ref="base.user_root"/>
         <field name="interval_number">30</field>
-            <field name="interval_type">minutes</field>
+        <field name="interval_type">minutes</field>
         <field name="numbercall">-1</field>
         <field name="doall" eval="False"/>
         <field name="model_id" ref="model_ses_mail_tracking"/>
         <field name="state">code</field>
         <field name="code">model.cron_check_ses_mail_tracking()</field>
     </record>
+
 </odoo>

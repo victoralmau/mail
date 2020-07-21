@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, fields, models
 
@@ -28,9 +27,10 @@ class MailActivity(models.Model):
             [
                 ('res_model', '=', res_model),
                 ('res_id', '=', res_id)
-            ], order="date_deadline asc"
+            ],
+            order="date_deadline asc"
         )
-        if len(mail_activity_ids)>0:
+        if mail_activity_ids:
             mail_activity_id = mail_activity_ids[0]
             return_item = {
                 'date_deadline': mail_activity_id.date_deadline,
@@ -38,7 +38,7 @@ class MailActivity(models.Model):
                 'activity_type_id': mail_activity_id.activity_type_id.id,
                 'activity_objective_id': mail_activity_id.activity_objective_id.id
             }
-        #return
+        # return
         return return_item
 
     @api.one
@@ -58,5 +58,5 @@ class MailActivity(models.Model):
         # next_activity_activity_objective_id
         if 'next_activity_activity_objective_id' in res_model_item:
             res_model_item.next_activity_activity_objective_id = old_item['activity_objective_id']
-        #return
+        # return
         return res_model_item

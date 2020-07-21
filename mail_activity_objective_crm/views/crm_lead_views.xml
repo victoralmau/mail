@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
     <record id="mail_activity_objective_crm_crm_case_tree_view_oppor" model="ir.ui.view">
         <field name="name">mail_activity_objective_crm_crm_case_tree_view_oppor</field>
         <field name="model">crm.lead</field>
@@ -13,6 +14,7 @@
             </field>
         </field>
     </record>
+
     <record id="mail_activity_objective_crm_crm_case_form_view_oppor" model="ir.ui.view">
         <field name="name">mail_activity_objective_crm_crm_case_form_view_oppor</field>
         <field name="model">crm.lead</field>
@@ -27,4 +29,5 @@
             </field>
         </field>
     </record>
+
 </odoo>

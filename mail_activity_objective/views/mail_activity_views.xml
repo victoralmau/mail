@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>   
+<odoo>
+
     <record id="mail_activity_objective_mail_activity_view_form_popup" model="ir.ui.view">
         <field name="name">mail_activity_objective_mail_activity_view_form_popup</field>
         <field name="model">mail.activity</field>
@@ -11,5 +12,6 @@
                 <field name="duration" widget="float_time" required="True" />
             </field>                                                            
         </field>
-    </record>               
+    </record>
+
 </odoo>

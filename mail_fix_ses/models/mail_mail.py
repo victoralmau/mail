@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, models, fields
 
@@ -18,9 +17,9 @@ class MailMail(models.Model):
         for mail_mail_id in mail_mail_ids:
             if "Message rejected: Email address is not verified" in mail_mail_id.failure_reason:
                 email_from_split = mail_mail_id.mail_message_id.email_from.split("<")
-                if len(email_from_split)>1:
-                    if email_from_split[1]!=mail_catchall:
-                        mail_mail_id.mail_message_id.email_from = email_from_split[0]+'<'+mail_catchall+'>'
+                if len(email_from_split) > 1:
+                    if email_from_split[1] != mail_catchall:
+                        mail_mail_id.mail_message_id.email_from = '%s<%s>' % (email_from_split[0], mail_catchall)
                         
                         mail_mail_id.mark_outgoing()
                         mail_mail_id.send()
@@ -31,7 +30,7 @@ class MailMail(models.Model):
                         mail_mail_id.mark_outgoing()
                         mail_mail_id.send()
                     else:
-                        _logger.info('Pasa algo raro con '+mail_mail_id.mail_message_id.email_from)
+                        _logger.info(_('Pasa algo raro con %s') % mail_mail_id.mail_message_id.email_from)
                         
             elif "Transaction failed: Local address contains control or whitespace" in mail_mail_id.failure_reason:
                 email_from_replace = mail_mail_id.mail_message_id.email_from.replace('[', '-').replace(']', '-')
@@ -44,8 +43,8 @@ class MailMail(models.Model):
     @api.model
     def create(self, values):
         return_object = super(MailMail, self).create(values)
-        #override reply_to
-        if return_object.email_from!=False:
+        # override reply_to
+        if return_object.email_from:
             return_object.reply_to = return_object.email_from 
-        #return            
+        # return
         return return_object                                                                                                           

@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, models, fields
+
+from odoo import api, models
 from odoo.tools.safe_eval import safe_eval
 
-import logging
-_logger = logging.getLogger(__name__)
 
 class MailThread(models.AbstractModel):
     _inherit = 'mail.thread'                                
@@ -14,12 +12,11 @@ class MailThread(models.AbstractModel):
         res = super(MailThread, self).message_get_email_values(notif_mail=notif_mail)
         
         mail_mail_headers_override_add = self.env['ir.config_parameter'].sudo().get_param('mail_mail_headers_override_add')
-        if mail_mail_headers_override_add!=False:                
+        if mail_mail_headers_override_add:
             if res.get('headers'):
                 headers = {}
                 headers.update(safe_eval(res['headers']))
                 res['headers'] = repr(headers)
-                headers_new = res['headers'][0:-1]+",'"+str(mail_mail_headers_override_add)+"'}"
-                res['headers'] = headers_new
+                res['headers'] = "%s,'%s'}" % (res['headers'][0:-1], mail_mail_headers_override_add)
                                                                                                                 
         return res                                                                                                                                          

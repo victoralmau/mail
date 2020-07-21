@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-import logging
-_logger = logging.getLogger(__name__)
 
-from odoo import api, models, fields
+from odoo import models, fields
+
 
 class MailTrackingEmail(models.Model):
     _inherit = 'mail.tracking.email'
@@ -14,11 +12,11 @@ class MailTrackingEmail(models.Model):
     )
     ses_state = fields.Selection(
         selection=[
-            ('none','Ninguno'), 
-            ('delivery','Entregado'), 
-            ('bounce','Rebote'),
-            ('complaint','Reclamacion')                         
+            ('none','None'),
+            ('delivery','Delivery'),
+            ('bounce','Bounce'),
+            ('complaint','Complaint')
         ],
         default='none',
-        string='SES Estado', 
+        string='SES State',
     )

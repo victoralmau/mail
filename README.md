@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/OdooNodrizaTech/mail.svg?branch=12.0)](https://travis-ci.org/OdooNodrizaTech/mail)
+[![Coverage Status](https://coveralls.io/repos/OdooNodrizaTech/mail/badge.svg?branch=12.0)](https://coveralls.io/r/OdooNodrizaTech/mail?branch=12.0)
+
 mail
 =========
 Módulos relacionados con Mail

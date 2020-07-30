@@ -101,19 +101,18 @@ class SesMailTracking(models.Model):
                                             ]
                                         )
                                         if message_ids:
-                                            for message_id in message_ids:
+                                            for m_id in message_ids:
                                                 # notification_type_lower
                                                 if notification_type == 'delivery':
-                                                    message_id.aws_action_mail_delivery(
+                                                    m_id.aws_action_mail_delivery(
                                                         message_body
                                                     )
                                                 elif notification_type == 'bounce':
-                                                    message_id.aws_action_mail_bounce(
+                                                    m_id.aws_action_mail_bounce(
                                                         message_body
                                                     )
                                                 elif notification_type == 'complaint':
-                                                    message_id.\
-                                                        aws_action_mail_complaint(
+                                                    m_id.aws_action_mail_complaint(
                                                         message_body
                                                     )
                     # remove_message

@@ -51,7 +51,7 @@ class MailMessage(models.Model):
                 notice_message_skip = False
                 for user_id in record.author_id.user_ids:
                     if user_id:
-                        notice_message_skip = True                   
+                        notice_message_skip = True
 
                 if not notice_message_skip:
                     record.generate_notice_message_without_auto_starred_user_slack()

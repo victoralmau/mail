@@ -7,7 +7,7 @@ import boto3
 
 class SesMailTracking(models.Model):
     _name = 'ses.mail.tracking'
-    _description = 'SES Mail Tracking'    
+    _description = 'SES Mail Tracking'
 
     mail_message_id = fields.Many2one(
         comodel_name='mail.message',
@@ -52,7 +52,7 @@ class SesMailTracking(models.Model):
         if ses_mail_tracking_ids:
             exist = True
 
-        return exist        
+        return exist
 
     @api.model
     def cron_check_ses_mail_tracking(self):
@@ -65,7 +65,7 @@ class SesMailTracking(models.Model):
             'sqs',
             region_name=AWS_SMS_REGION_NAME,
             aws_access_key_id=AWS_ACCESS_KEY_ID,
-            aws_secret_access_key= AWS_SECRET_ACCESS_KEY
+            aws_secret_access_key=AWS_SECRET_ACCESS_KEY
         )
         # Receive message from SQS queue
         total_messages = 10
@@ -85,7 +85,7 @@ class SesMailTracking(models.Model):
                 for message in response['Messages']:
                     message_body = json.loads(message['Body'])
                     if 'mail' in message_body:
-                        notification_type = str(message_body['notificationType'].lower())
+                        notification_type = message_body['notificationType'].lower()
                         # message_id_odoo
                         message_id_odoo = False
                         if 'headers' in message_body['mail']:
@@ -112,7 +112,8 @@ class SesMailTracking(models.Model):
                                                         message_body
                                                     )
                                                 elif notification_type == 'complaint':
-                                                    message_id.aws_action_mail_complaint(
+                                                    message_id.\
+                                                        aws_action_mail_complaint(
                                                         message_body
                                                     )
                     # remove_message

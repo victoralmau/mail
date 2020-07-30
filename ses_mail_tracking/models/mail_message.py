@@ -111,7 +111,7 @@ class MailMessage(models.Model):
                                 if tracking_email_id.ses_state != 'delivery':
                                     tracking_email_id.state = 'bounced'
                                     tracking_email_id.ses_state = tracking_obj.state
-                                    
+
     @api.multi
     def aws_action_mail_complaint(self, message_body):
         vals = {
@@ -122,8 +122,9 @@ class MailMessage(models.Model):
             'state': 'complaint'
         }
         # complaintFeedbackType
-        if "complaintFeedbackType" in message_body['complaint']:
-             vals['response'] = message_body['complaint']['complaintFeedbackType']
+        if 'complaint' in message_body:
+            if 'complaintFeedbackType' in message_body['complaint']:
+                vals['response'] = message_body['complaint']['complaintFeedbackType']
         # check_if_exist
         mail_tracking_ids = self.env['ses.mail.tracking'].sudo().search(
             [

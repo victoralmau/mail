@@ -5,7 +5,7 @@ from odoo import models, fields
 
 class MailTrackingEmail(models.Model):
     _inherit = 'mail.tracking.email'
-    
+
     ses_mail_tracking_id = fields.Many2one(
         comodel_name='ses.mail.tracking',
         string='SES Mail Tracking ID'

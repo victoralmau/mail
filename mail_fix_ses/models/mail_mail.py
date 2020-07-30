@@ -39,9 +39,9 @@ class MailMail(models.Model):
 
             elif "Transaction failed: Local address contains control or whitespace" \
                     in mail_id.failure_reason:
-                email_from_replace = mail_id.mail_message_id.email_from.replace('[', '-')
-                email_from_replace = email_from_replace.replace(']', '-')
-                mail_id.mail_message_id.email_from = email_from_replace
+                email_from_new = mail_id.mail_message_id.email_from.replace('[', '-')
+                email_from_new = email_from_new.replace(']', '-')
+                mail_id.mail_message_id.email_from = email_from_new
                 mail_id.mark_outgoing()
                 mail_id.send()
 
@@ -50,6 +50,6 @@ class MailMail(models.Model):
         return_object = super(MailMail, self).create(values)
         # override reply_to
         if return_object.email_from:
-            return_object.reply_to = return_object.email_from 
+            return_object.reply_to = return_object.email_from
         # return
         return return_object

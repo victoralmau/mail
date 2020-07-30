@@ -4,11 +4,11 @@ from odoo import api, fields, models
 
 class MailActivity(models.Model):
     _inherit = 'mail.activity'
-    
+
     activity_objective_id = fields.Many2one(
         comodel_name='mail.activity.objective',
         string='Activity objective'
-    )    
+    )
     duration = fields.Float(
         string='Duration'
     )

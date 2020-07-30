@@ -1,20 +1,22 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
-from odoo import api, models
+import logging
+from odoo import api, models, _
+_logger = logging.getLogger(__name__)
 
 
 class MailMail(models.Model):
     _inherit = 'mail.mail'
-   
-    @api.model    
+
+    @api.model
     def cron_action_check_mails_exceptions(self):
         mail_catchall = "%s@%s" % (
             str(self.env['ir.config_parameter'].get_param('mail.catchall.alias')),
             str(self.env['ir.config_parameter'].get_param('mail.catchall.domain'))
         )
         mail_ids = self.env['mail.mail'].search([('state', '=', 'exception')])
-        
         for mail_id in mail_ids:
-            if "Message rejected: Email address is not verified" in mail_id.failure_reason:
+            if "Message rejected: Email address is not verified" \
+                    in mail_id.failure_reason:
                 email_from_split = mail_id.mail_message_id.email_from.split("<")
                 if len(email_from_split) > 1:
                     if email_from_split[1] != mail_catchall:
@@ -34,13 +36,15 @@ class MailMail(models.Model):
                             _('Pasa algo raro con %s')
                             % mail_id.mail_message_id.email_from
                         )
-                        
-            elif "Transaction failed: Local address contains control or whitespace" in mail_id.failure_reason:
-                email_from_replace = mail_id.mail_message_id.email_from.replace('[', '-').replace(']', '-')
+
+            elif "Transaction failed: Local address contains control or whitespace" \
+                    in mail_id.failure_reason:
+                email_from_replace = mail_id.mail_message_id.email_from.replace('[', '-')
+                email_from_replace = email_from_replace.replace(']', '-')
                 mail_id.mail_message_id.email_from = email_from_replace
                 mail_id.mark_outgoing()
                 mail_id.send()
-                
+
     @api.model
     def create(self, values):
         return_object = super(MailMail, self).create(values)

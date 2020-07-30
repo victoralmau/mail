@@ -1,6 +1,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 from odoo import api, models
 
+
 class MailMessage(models.Model):
     _inherit = 'mail.message'
 
@@ -12,7 +13,7 @@ class MailMessage(models.Model):
             'message_id': message_body['mail']['messageId'],
             'date': message_body['delivery']['timestamp'],
             'response': message_body['delivery']['smtpResponse'],
-            'state': 'delivery',                                                              
+            'state': 'delivery'
         }
         # check_if_exist
         tracking_ids = self.env['ses.mail.tracking'].sudo().search(
@@ -32,7 +33,7 @@ class MailMessage(models.Model):
                 for recipient in message_body['delivery']['recipients']:
                     vals = {
                         'ses_mail_tracking_id': tracking_obj.id,
-                        'recipient': recipient                                                              
+                        'recipient': recipient
                     }
                     self.env['ses.mail.tracking.recipient'].sudo().create(vals)
             # mail_tracking_email
@@ -52,7 +53,7 @@ class MailMessage(models.Model):
                             if recipient in tracking_email_id.recipient:
                                 tracking_email_id.state = 'delivered'
                                 tracking_email_id.ses_state = tracking_obj.state
-                                
+
     @api.multi
     def aws_action_mail_bounce(self, message_body):
         vals = {
@@ -63,7 +64,7 @@ class MailMessage(models.Model):
                 str(message_body['bounce']['bounceType']),
                 str(message_body['bounce']['bounceSubType'])
             ),
-            'state': 'bounce',                                                              
+            'state': 'bounce'
         }
         # check_if_exist
         tracking_ids = self.env['ses.mail.tracking'].sudo().search(
@@ -83,7 +84,7 @@ class MailMessage(models.Model):
                 for bounced_recipient in message_body['bounce']['bouncedRecipients']:
                     vals = {
                         'ses_mail_tracking_id': tracking_obj.id,
-                        'recipient': bounced_recipient['emailAddress']                                                              
+                        'recipient': bounced_recipient['emailAddress']
                     }
                     self.env['ses.mail.tracking.recipient'].sudo().create(vals)
             # mail_tracking_email
@@ -103,9 +104,9 @@ class MailMessage(models.Model):
                     ]
                 )
                 if tracking_email_ids:
-                    for bounced_recipient in message_body['bounce']['bouncedRecipients']:
+                    for recipient in message_body['bounce']['bouncedRecipients']:
                         for tracking_email_id in tracking_email_ids:
-                            if bounced_recipient['emailAddress'] in tracking_email_id.recipient:
+                            if recipient['emailAddress'] in tracking_email_id.recipient:
                                 # prevent_errors if previously delivery
                                 if tracking_email_id.ses_state != 'delivery':
                                     tracking_email_id.state = 'bounced'
@@ -118,7 +119,7 @@ class MailMessage(models.Model):
             'message_id': message_body['mail']['messageId'],
             'date': message_body['complaint']['timestamp'],
             'response': '',
-            'state': 'complaint',                                                              
+            'state': 'complaint'
         }
         # complaintFeedbackType
         if "complaintFeedbackType" in message_body['complaint']:
@@ -138,10 +139,10 @@ class MailMessage(models.Model):
             tracking_obj = self.env['ses.mail.tracking'].sudo().create(vals)
             # recipients
             if "complainedRecipients" in message_body['complaint']:
-                for complaint_recipient in message_body['complaint']['complainedRecipients']:
+                for recipient in message_body['complaint']['complainedRecipients']:
                     vals = {
                         'ses_mail_tracking_id': tracking_obj.id,
-                        'recipient': complaint_recipient['emailAddress']                                                              
+                        'recipient': recipient['emailAddress']
                     }
                     self.env['ses.mail.tracking.recipient'].sudo().create(vals)
             # mail_tracking_email
@@ -161,9 +162,9 @@ class MailMessage(models.Model):
                     ]
                 )
                 if tracking_email_ids:
-                    for complaint_recipient in message_body['complaint']['complainedRecipients']:
+                    for recipient in message_body['complaint']['complainedRecipients']:
                         for tracking_email_id in tracking_email_ids:
-                            if complaint_recipient['emailAddress'] in tracking_email_id.recipient:
+                            if recipient['emailAddress'] in tracking_email_id.recipient:
                                 # prevent_errors if previously delivery
                                 if tracking_email_id.ses_state != 'delivery':
                                     tracking_email_id.state = 'bounced'

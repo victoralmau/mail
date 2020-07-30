@@ -7,7 +7,7 @@ class MailActivityObjective(models.Model):
     _name = 'mail.activity.objective'
     _description = 'Mail Activity Objetice'
     _order = "probability desc"
-    
+
     name = fields.Char(
         string='Name',
     )
@@ -17,13 +17,13 @@ class MailActivityObjective(models.Model):
     )
     objective_type = fields.Selection(
         selection=[
-            ('reserved','Reserved'),
-            ('prospecting','Prospecting'),
-            ('activation','Activation'),
-            ('review','Review'),
-            ('closing','Closing'),
-            ('tracking','Tracking'),
-            ('wake','Wake')
+            ('reserved', 'Reserved'),
+            ('prospecting', 'Prospecting'),
+            ('activation', 'Activation'),
+            ('review', 'Review'),
+            ('closing', 'Closing'),
+            ('tracking', 'Tracking'),
+            ('wake', 'Wake')
         ],
         string='Type'
     )

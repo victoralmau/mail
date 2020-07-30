@@ -11,7 +11,7 @@
     "depends": [
         "base",
         "mail",
-        "mail_tracking"
+        "mail_tracking"  # https://github.com/OCA/social
     ],
     "data": [
         "data/ir_cron.xml",

@@ -11,7 +11,7 @@
     "depends": [
         "base",
         "mail",
-        "mail_activity_done"
+        "mail_activity_done"  # https://github.com/OCA/social
     ],
     "data": [
         "views/mail_activity_views.xml",

@@ -2,11 +2,7 @@
 from odoo import api, fields, models, tools
 
 import json
-import logging
-_logger = logging.getLogger(__name__)
-
 import boto3
-from botocore.exceptions import ClientError
 
 class SesMailTracking(models.Model):
     _name = 'ses.mail.tracking'
@@ -27,15 +23,19 @@ class SesMailTracking(models.Model):
     )
     state = fields.Selection(
         selection=[
-            ('none','None'),
-            ('delivery','Delivery'),
-            ('bounce','Bounce'),
-            ('complaint','Complaint')
+            ('none', 'None'),
+            ('delivery', 'Delivery'),
+            ('bounce', 'Bounce'),
+            ('complaint', 'Complaint')
         ],
         default='none',
         string='State',
     )
-    recipient_ids = fields.One2many('ses.mail.tracking.recipient', 'ses_mail_tracking_id', string='Recipients')
+    recipient_ids = fields.One2many(
+        'ses.mail.tracking.recipient',
+        'ses_mail_tracking_id',
+        string='Recipients'
+    )
     
     def item_exist(self, params):
         exist = False
@@ -90,24 +90,30 @@ class SesMailTracking(models.Model):
                         if 'headers' in message_body['mail']:
                             if len(message_body['mail']['headers']) > 0:
                                 for header in message_body['mail']['headers']:                
-                                    if header['name']=='Message-Id':
+                                    if header['name'] == 'Message-Id':
                                         message_id_odoo = header['value'].strip()
-                                        mail_message_ids = self.env['mail.message'].sudo().search(
+                                        message_ids = self.env['mail.message'].sudo().search(
                                             [
                                                 ('message_id', '=', message_id_odoo)
                                             ]
                                         )
-                                        if mail_message_ids:
-                                            for mail_message_id in mail_message_ids:
+                                        if message_ids:
+                                            for message_id in message_ids:
                                                 # notification_type_lower
                                                 if notification_type_lower == 'delivery':
-                                                    mail_message_id.aws_action_mail_delivery(message_body)
+                                                    message_id.aws_action_mail_delivery(
+                                                        message_body
+                                                    )
                                                 elif notification_type_lower == 'bounce':
-                                                    mail_message_id.aws_action_mail_bounce(message_body)
+                                                    message_id.aws_action_mail_bounce(
+                                                        message_body
+                                                    )
                                                 elif notification_type_lower == 'complaint':
-                                                    mail_message_id.aws_action_mail_complaint(message_body)
+                                                    message_id.aws_action_mail_complaint(
+                                                        message_body
+                                                    )
                     # remove_message
                     sqs.delete_message(
                         QueueUrl=ses_sqs_url,
                         ReceiptHandle=message['ReceiptHandle']
-                    )                                        
+                    )

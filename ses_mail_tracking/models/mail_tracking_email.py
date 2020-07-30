@@ -12,10 +12,10 @@ class MailTrackingEmail(models.Model):
     )
     ses_state = fields.Selection(
         selection=[
-            ('none','None'),
-            ('delivery','Delivery'),
-            ('bounce','Bounce'),
-            ('complaint','Complaint')
+            ('none', 'None'),
+            ('delivery', 'Delivery'),
+            ('bounce', 'Bounce'),
+            ('complaint', 'Complaint')
         ],
         default='none',
         string='SES State',

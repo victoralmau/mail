@@ -13,4 +13,4 @@ class SesMailTrackingRecipient(models.Model):
     )
     recipient = fields.Char(        
         string='Recipient'
-    )                                                  
+    )

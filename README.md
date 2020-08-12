@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/OdooNodrizaTech/mail.svg?branch=12.0)](https://travis-ci.org/OdooNodrizaTech/mail)
+[![Coverage Status](https://coveralls.io/repos/github/OdooNodrizaTech/mail/badge.svg?branch=12.0)](https://coveralls.io/github/OdooNodrizaTech/mail?branch=12.0)
 
 mail
 =========

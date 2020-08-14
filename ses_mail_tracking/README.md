@@ -1,12 +1,10 @@
 El módulo contiene el desarrollo relativo a hacer tracking de los emails a través de AWS SES
 
 ### odoo.conf
-```
-aws_access_key_id=xxx
-aws_secret_key_id=xxxx
-aws_region_name=eu-west-1
-ses_sqs_url=https://sqs.eu-west-1.amazonaws.com/xxxx/exec_sns_ses
-``` 
+- aws_access_key_id=xxx
+- aws_secret_key_id=xxxx
+- aws_region_name=eu-west-1
+- ses_sqs_url=https://sqs.eu-west-1.amazonaws.com/xxxx/exec_sns_ses
 
 Se añade el campo de ses_state a la vista: mail_tracking.view_mail_tracking_email_form
 
